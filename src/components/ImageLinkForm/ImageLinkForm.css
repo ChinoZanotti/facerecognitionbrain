@@ -1,0 +1,15 @@
+.form button {
+    background-color: #ECD078;
+    border: 1px solid #00000048;
+    border-top-color: #ffffff3b;
+    border-left-color: #ffffff3b;
+    border-radius: 0 10px 10px 0;
+    color: #542437;
+}
+
+.form input {
+    border: 1px solid #542437b3;
+    border-bottom-color: #D95B43;
+    border-right-color: #fff;
+    border-radius: 10px 0 0 10px;
+}

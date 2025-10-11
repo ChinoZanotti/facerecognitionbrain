@@ -1,9 +1,8 @@
-import React from "react";
 import Tilt from 'react-parallax-tilt'
 import './Logo.css';
 import brain from './brain-logo.svg'
 
-const Logo = () => {
+export default function Logo() {
     return(
         <div className="ma4 mt0" style={{maxWidth:'150px'}}>
             <Tilt 
@@ -18,7 +17,5 @@ const Logo = () => {
                 </div>
             </Tilt>
         </div>
-    )
-};
-
-export default Logo;
+    );
+}
