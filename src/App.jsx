@@ -12,8 +12,31 @@ import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 
 export default function App() {
   
-  const [Input, setInput] = useState('');
-  const [ImgUrl, setImgUrl] = useState('');
+  const [Input, setInput] = useState(null);
+  const [ImgUrl, setImgUrl] = useState(null);
+  const [Box, setBox] = useState({
+    // leftCol: 202.54341,
+    // topRow: 34.837205420000004,
+    // rightCol: 137.32105,
+    // bottomRow: 47.05012015
+  });
+
+  const calculateFaceLocation = (data) => {
+    const image = document.getElementById('inputImage');
+    const width = Number(image.width);
+    const height = Number(image.height);
+    return{
+      leftCol: data.left_col * width,
+      topRow: data.top_row * height,
+      rightCol: width - (data.right_col * width),
+      bottomRow: height - (data.bottom_row * height)
+    }
+  }
+
+  const displayFaceBox = (box) => {
+    console.log(box);
+    setBox(box);
+  }
 
   const onInputChange = (event) => {
     setInput(event.target.value);
@@ -88,13 +111,15 @@ export default function App() {
                 const bottomRow = boundingBox.bottom_row.toFixed(3);
                 const rightCol = boundingBox.right_col.toFixed(3);
 
+                displayFaceBox(calculateFaceLocation(boundingBox));
+
                 region.data.concepts.forEach(concept => {
                     // Accessing and rounding the concept value
                     const name = concept.name;
                     const value = concept.value.toFixed(4);
 
                     console.log(`${name}: ${value} BBox: ${topRow}, ${leftCol}, ${bottomRow}, ${rightCol}`);
-                    
+
                 });
             });
 
@@ -113,7 +138,8 @@ export default function App() {
         onButtonSubmit={onButtonSubmit} 
       />
       <FaceRecognition 
-        ImgUrl={ImgUrl}
+        imgUrl={ImgUrl}
+        box={Box}
       />
     </div>
   )
