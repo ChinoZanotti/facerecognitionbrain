@@ -3,6 +3,13 @@
     justify-content: center;
 }
 
+.center-center {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
 button {
     cursor: pointer;
 }
